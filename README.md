@@ -103,3 +103,18 @@ Cancellable은 프로토콜
 즉, 그 프로토콜을 따르는 객체는 AnyCancellable 
 
 ```
+
+
+# WebView 
+```
+API를 통해서 받은 URL을 호출을 해보면 HTML로 웹페이지가 들어오게됨
+> 사파리 웹 호출
+- 구현하기가 간단함
+- https를 받아서 해당 앱을 처리하는게아니라 사파티앱에서 처리하기떄문에 ATS설정을 해줄 필요가없음 
+
+> UIWebView
+- WKWebView보다 좀 느림
+- 출력은 되지만 뒤로 가기 앞으로 가기 편의 기능들을 직접 구현해야됨
+3. WKWebView
+4. SFSafariViewController 
+```
