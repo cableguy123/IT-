@@ -48,3 +48,58 @@ ViewModel
 - 메모리 누수 방지가 중요해짐
 
 ```
+
+
+# Never 타입 
+
+```
+제어권을 호출한 위치로 return 하지 않는다
+Never타입은 빈 열거형(enum) 로 선언되어있다
+빈 열거형이므로 인스턴스를 생성할수 없다
+CPU의 제어권을 돌려주지가 않기때문에
+런타임에서 발생할수있는 에러를 미리 발견하고 검증/테스트 하기위해
+심각한 에러가 발생하면 앱을 종료시키기 위해 
+```
+
+# Combine 
+```
+비동기 이벤트 처리와 데이터 스트림 관리에 주로 사용
+```
+
+# Sink 
+
+```
+Publisher로 전달된 데이터를 처리하는데 매우 중요한 역할
+Publisher로부터 발행된 값을 수신하고 Subscriber를 생성
+클로저를 통해 값을 처리하고 오류 처리도 가능
+
+```
+# [Combine]  Subject 
+
+```
+> protoco  Subject : AnyObject, Publisher
+
+
+![image](https://github.com/user-attachments/assets/e1a57ff6-dc08-4b04-9d30-39323eeaabae)
+
+subject를 사용하면 send(_:)를 통해 외부에서도 1,3,5로 이어지는 일련의 스트림에 값을 주입할수있다
+Combine이 이때 사용됨
+
+Subject의 종류는 크게 > PassthroughSubject 와 > CurrentValueSubject
+
+```
+
+# [Combine] Cancellable,AnyCancellable
+```
+cancellation : "Combine"에서 구독관계를 끊는다
+cancellable : Cancellation 의 수행기능을 담고있는 프로토콜
+AnyCancellable : Cancellable 의 구현부를 작성한 클래스
+
+Cancellable이 ARC로 관리됨,즉 메모리 관련 측면에서 중요한 역할을 함
+즉, Combine에서 Publisher 와 Subscriber는 강한 참조 strong 으로 연결되어있기때문에 Cancellable 객체는 메모리에 계속 남아있음
+
+
+Cancellable은 프로토콜
+즉, 그 프로토콜을 따르는 객체는 AnyCancellable 
+
+```
