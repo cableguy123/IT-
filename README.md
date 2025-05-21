@@ -118,3 +118,34 @@ API를 통해서 받은 URL을 호출을 해보면 HTML로 웹페이지가 들�
 3. WKWebView
 4. SFSafariViewController 
 ```
+
+
+
+# XCodeGen 
+```
+폴더 구조와 프로젝트 스펙에 맞춰서 XCode 프로젝트를 만들어주는 커맨드라인 도구
+사용법은 아래에 명시
+https://github.com/yonaskolb/XcodeGen/blob/master/Docs/Usage.md
+project.xml? 을 주목해야될듯
+간단히 얘기하면 프로젝트 껍데기만 기본적으로 만들어주는 내용
+xcodeproj파일이 생기는데 .xml으로 이루어져있어서 직접 충돌을 해결할수도있지만, 빠르게 협업할수 있는게 큰 장점
+https://motosw3600.tistory.com/73 < 프로젝트 설정 참고
+```
+
+
+# Swift Concurrency (동시성 프로그래밍) 
+```
+먼저 동시성이란?
+-> ContextSwitching을 통하여 스레드의 흐름이 겹치도록 수행하는것을 동시성이라고 정의함
+특정 프로세스의 실행 시간이 다른 프로세스의 흐름과 겹치는 상황에서 동시에 실행한다
+Swift는 구조화된 방식으로 비동기,병렬 코드작성을 지원함
+ここから、日本語で、
+ざっくりとは、”非同期”、”並行処理”を大きくした
+Async/Await
+非同期、同期
+Task
+プログラムの一部として非同期で実行できる作業の単位
+全ての非同期コードは何からのタスクの一部として実行
+Actor
+非同期処理で起こりやすい、データ競合を防いでくれる。
+```
