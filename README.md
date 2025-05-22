@@ -139,17 +139,24 @@ https://motosw3600.tistory.com/73 < 프로젝트 설정 참고
 -> ContextSwitching을 통하여 스레드의 흐름이 겹치도록 수행하는것을 동시성이라고 정의함
 특정 프로세스의 실행 시간이 다른 프로세스의 흐름과 겹치는 상황에서 동시에 실행한다
 Swift는 구조화된 방식으로 비동기,병렬 코드작성을 지원함
-ここから、日本語で、
-ざっくりとは、”非同期”、”並行処理”を大きくした
-Async/Await
-非同期、同期
-Task
-プログラムの一部として非同期で実行できる作業の単位
-全ての非同期コードは何からのタスクの一部として実行
-Actor
-非同期処理で起こりやすい、データ競合を防いでくれる。
 ```
 
+# GCD(Grand Central Dispatch) 
+```
+동시성 프로그래밍 API(Swfit Concurrency)가 등장하기전 사용되는 동시성 API
+Dispatch Queue는 FIFO Queue의 형태로 작업을 순서대로 전달 받음
+Dispatch Queue는
+1. Serial Queue
+2. Concurrent Queue
+로 나눠짐
+Serial Queue는 추가된 작업을 하나씩 처리
+두개 이상의 작업이 동시에 처리되지않기때문에 Queue 기반의 동기화 작업에서 많이 사용됨
+Concurrent Queue는 추가된 작업을 동시에 처리함
+
+DispatchQueue.main
+즉, mainQueue는 메인 쓰레드에서 동작을함, UI update관련 동작은 mainQueue에서 실행해야함
+Serial Queue에 해당함 
+```
 
 # 클린 아키텍쳐란 정확히 뭘까? 
 ```
