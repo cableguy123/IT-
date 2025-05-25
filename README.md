@@ -184,3 +184,103 @@ Persistence Layer
 - 데이터베이스 관련된 계층이라고 이해하면 될듯?
 
 ```
+
+
+# RxSwift
+```
+Reactive Extension + Swift
+Async한 코드를 간결하게 쓰게해줌
+1. Observable
+2. Operations
+3. Single
+4. Subject
+5. Scheduler 
+반응형 프로그래밍
+- 반응형 프로그래밍이란 데이터의 흐름 및 변경사항을 전파하는데 중점
+- Observable,Observer,Operator (Swift)
+- 상태에 대해 변화가 일어나면 그 변화에 대해 전파를 받을수있고, 변화에 대해 어떤 동작을 수행
+```
+
+# RxSwift - Observable 
+```
+- 비동기 이벤트에 대해 관찰 가능한 형태
+- 관찰이 가능한 흐름, 즉 비동기 이벤트에 대해 흐름을 읽음
+- 받은 해당 이벤트에 대한 항목을 순서대로 방출
+- 근데 방출한 이벤트를 누가받아주냐? "Observer"가 받음 
+```
+
+# RxSwift - Observer 
+```
+- Observable을 구독함
+- "Subscribe"라는 메서드를 이용해서 구독을함
+```
+
+# CocoaPods 
+```
+설치 도중 Ruby 버전 높이셈 이라는 경고를 받음
+? 왠 Ruby? 아! CocoaPods는 gem, 즉 루비로 이루어짐 
+```
+
+# Provisioning Profile
+```
+- iOS 디바이스를 Apple 인증서와 연결하는 역할 담당
+- App ID + Development Certificate + Device 로 구성 
+```
+
+# Provisioning Profile - App ID 
+```
+- 앱의 Bundle ID
+- 단일 개발팀에서는 하나 이상의 앱을 식별하는데 사용되는 문자열
+- 팀 ID는 Apple 에서 제공, Bundle ID는 개발자가 제공 
+```
+
+# Provisioning Profile - Development Certificate
+```
+Public Key ( 애플 인증을 받은 키 ) 
+```
+
+# Provisioning Profile - Device
+```
+디바이스의 UUID 
+```
+
+# 인코딩
+```
+인코딩 변환, 객체를 JSON으로 변환
+```
+
+# 디코딩
+```
+JSON을 객체로 변환
+```
+
+
+# 직렬화 
+```
+어떤 데이터를 다른 형태로 변환하는것
+데이터 구조 또는 객체의 상태를 재구성될수있는 형식으로 변환하는 과정
+유선을 통해 데이터 전송
+데이터 저장
+원격 절차 호출 (RPC)
+ex. JSON,XML,protocolbuf,YAML ..
+iOS라면 text,data,stack,heap으로 구성
+```
+
+# Text Segment 
+```
+앱의 실행가능한 코드를 형성하는 기계어 명령을 포함, 읽기만 가능하고 불변
+```
+# Data Segment
+```
+static 변수와 불변 그리고 type metadata를 저장
+초깃값을 필요로하는 global 데이터는 여기에 전달
+```
+# Stack
+```
+메서드 파라메터,local 변수와 같은 일시적인 데이터는 여기에 저장
+```
+# Heap
+```
+Swift 참조타입(struct,enum .. 수정이불가능) 값타입은 class(수정이 가능) 예외적인 값타입은 Heap에 저장
+```
+
