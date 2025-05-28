@@ -16,3 +16,10 @@ AndroidManifest.xml에서 해결함
 <application> 태그안에 있는것들은 앱 전체의 설정을 정의함
 <activity> 태그는 각 앱 내의 존재하는 각각의 화면을 정의함
 ```
+
+# Modifier 이란 무엇인가?
+```
+의미는 수정자, 이걸 쓰면 Composable을 장식,강화할수도 있다 
+1. UI 구성요소들을 꾸미기 위한 Modifier
+2. 행동을 추가하기 위한 Modifier 
+```
