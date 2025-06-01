@@ -88,6 +88,10 @@ AAB중 .APK 형식으로 다운로드하여 사용
 ```
 Kapt(Kotiln Annotation Processing Tool)
 - Kotiln 코드에서 Java의 어노테이션 프로세서를 사용할수 있도록 해주는 도구
-- Kotiln -> Java 
+- Kotiln -> Java -> 그 결과를 어노테이션 프로세서를 통해 실행
+KSP(Kotiln Symbol Processing)
+- Kotiln용으로 설계된 경량의 어노테이션 프로세싱 도구
+- Kotiln 코드에서 직접 어노테이션을 처리하여 추가적인 변환 단계없이 더 빠르게 동작 
 ```
+
 
