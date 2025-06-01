@@ -50,3 +50,44 @@ onDismissRequest: DropDownMenu를 닫으라는 명령이 떨어졌을때 동작
 이것들을 모아서, 범위 지정 함수라고함
 그냥 단순히 보기 쉽게하기위해서임 
 ```
+
+# @Binds,@Provides차이
+```
+@Binds는 구현체(Impl)와 인터페이스를 연결할때 단순화 작업을 함
+@Provides는 구현체와 인터페이스를 연결할뿐만 아니라 복집한 로직까지 있을경우에 사용
+```
+
+# Entity,Model 차이 
+```
+Entity는 데이터레이어에서 사용하는 실제 DB의 테이블명명을 가르킴
+Model는 도메인레이어에서 사용하는 비즈니스 로직과 UI 처리 담당을 가르킴 즉, Model은? 비즈니스 로직은 도메인 레이어
+```
+
+# AGP(Android Gradle PlugIn) 
+```
+안드로이드 앱의 빌드 및 배포 과정을 관리하는데 사용되는 다양한 플러그인
+```
+
+# App Build
+```
+Gradle을 통해 자동으로 앱을 빌드시켜줌
+- .kts
+- .java
+- .xml
+등의 파일들을 컴파일,assemble하여 하나의 AAB(Android App Bundle)로 만들어 배포하고 다운로드 하는 사용자들은
+AAB중 .APK 형식으로 다운로드하여 사용
+즉, 작성한 코드를 DEX파일로 전환 한 뒤, APK로 묶어줌
+이떄! 외부 라이브러리 build.gradle.kts (:app)..은 JAR,AAR형식으로 외부에서 다운로드 받아오고
+해당 형식의 파일을 컴파일러가 DEX파일로 변경시킨다
+
+** JAR(Java Archive : 순수 Java 파일)
+** AAR(Android Archive: AndroidManifest.xml등 포함) 
+```
+
+# kapt/kap 
+```
+Kapt(Kotiln Annotation Processing Tool)
+- Kotiln 코드에서 Java의 어노테이션 프로세서를 사용할수 있도록 해주는 도구
+- Kotiln -> Java 
+```
+
