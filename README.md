@@ -305,4 +305,19 @@ static 변수와 불변 그리고 type metadata를 저장
 ```
 Swift 참조타입(struct,enum .. 수정이불가능) 값타입은 class(수정이 가능) 예외적인 값타입은 Heap에 저장
 ```
+---
 
+# Swfit Concurrency 개념정리 
+```
+async/await : 비동기 함수 실행을 보다 직관적으로 표시하는 행위
+Task: 독립적인 비동기 실행 단위를 생성하는 컨텍스트
+TaskGroup: 여러 개의 비동기 작업을 관리하고 결과를 수집할수있음
+Task.detached: 부모 컨텍스트와 독립적으로 실행되는 비동기 Task
+```
+---
+# How can I async? 
+```
+GCD(Grand Central Dispatch)라는 API가 존재
+Queue에 작업을 보내면 이에 맞춰 스레드를 적절히 생성하여 분배해주는 역할
+Queue가 Dispatch Queue다 
+```
