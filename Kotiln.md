@@ -117,5 +117,17 @@ isMinifyEnabled
 1. 앱이 백그라운드에 있을대 리소스를 낭비하지않는것
 2.구성 변경(Configuration Change)
 
-lifecycleScope.launch에서 flow를 수집하는경우 액티비티가 백그라운드에 있을때도 계속 flow가 업데이트됨 
+lifecycleScope.launch에서 flow를 수집하는경우 액티비티가 백그라운드에 있을때도 계속 flow가 업데이트됨
+
+```
+--- 
+# 키워드
+```
+out 키워드는 뭐임?
+- 제너럴 공변성을 나타내는 키워드
+- 반환용(출력용)
+
+R 키워드는 뭐임?
+- 제너럴인듯? 데이터 타입을 고정하지않고 나중에 정하겠다
+- 
 ```
