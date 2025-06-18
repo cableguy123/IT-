@@ -1,35 +1,35 @@
-# 📘 Kotlin & Android 개발 정리 메모
+# 📘 Kotlin & Android 開発メモまとめ
 
 ---
 
-## 🎨 themes.xml 구조 이해
+## 🎨 themes.xml の構成理解
 
 ```xml
-<style name="AppTheme" ...>   <!-- 앱 전체 스타일 -->
-<style name="ActivityTheme" ...> <!-- 특정 액티비티에만 적용 -->
+<style name="AppTheme" ...>   <!-- アプリ全体に適用されるスタイル -->
+<style name="ActivityTheme" ...> <!-- 特定のアクティビティにのみ適用されるスタイル -->
 ```
 
-✅ 앱 전체 적용은 위쪽 `style`,
-✅ 특정 액티비티 적용은 아래쪽 `style`
-📌 ※ TopBar 미표시 문제는 `AndroidManifest.xml`에서 해결함
+✅ アプリ全体に適用：上側の `<style>`
+✅ アクティビティ個別適用：下側の `<style>`
+📌 ※TopBar がプレビューでは表示されたが、デバッグ実行時に表示されなかった問題は `AndroidManifest.xml` で解決済み
 
 ---
 
-## 🏗️ <application> 태그 vs <activity> 태그
+## 🏗️ <application> タグ vs <activity> タグ
 
 ```xml
-<application>: 앱 전체 설정 정의
-<activity>: 개별 화면(Activity)의 속성 정의
+<application>: アプリ全体の設定を定義
+<activity>: 各画面（Activity）の設定を定義
 ```
 
 ---
 
-## 🧩 Modifier란?
+## 🧩 Modifier とは？
 
-> Composable을 장식하거나 행동을 추가하는 "수정자"
+> Composable に装飾や動作を追加するための "修飾子"
 
-* UI 꾸밈용 Modifier
-* 동작 추가용 Modifier (e.g. 클릭 등)
+* UI を装飾するための Modifier
+* 動作を追加するための Modifier（例: クリックなど）
 
 ---
 
@@ -37,102 +37,102 @@
 
 ```kt
 StateFlow:
-- 관찰 가능한 상태 (value 접근 가능)
-- 상태 기반, 초기값 필수
-- UI 재렌더링 있음 → 일회성 작업에는 부적합
+- 観察可能な状態（value アクセス可）
+- 状態ベース、初期値が必要
+- UI が再描画される → 単発イベントには不向き
 
 SharedFlow:
-- 일회성 이벤트 처리에 적합
-- UI 다시 그리지 않음
+- 単発イベントの処理に適している
+- UI の再描画は行わない
 ```
 
-🧠 특정 시점의 데이터 표현 = `State`
-📤 State를 전달하는 방식 = `StateFlow`, `SharedFlow`
+🧠 特定時点のデータ = `State`
+📤 それを流す手段 = `StateFlow` / `SharedFlow`
 
 ---
 
-## 🔽 DropDownItem 주요 속성
+## 🔽 DropDownItem の主なプロパティ
 
-* `expanded`: 드롭다운 펼침 여부
-* `onDismissRequest`: 닫힘 시 콜백
-
----
-
-## 🛠️ Kotlin 범위 지정 함수
-
-`let`, `with`, `run`, `apply`, `also` → 가독성 향상 목적
+* `expanded`: ドロップダウンが展開されているかどうか
+* `onDismissRequest`: 閉じる際に呼ばれるコールバック
 
 ---
 
-## 🧷 @Binds vs @Provides
+## 🛠️ Kotlin のスコープ関数
 
-| 항목          | 설명                   |
-| ----------- | -------------------- |
-| `@Binds`    | 인터페이스 ↔ 구현체 연결만      |
-| `@Provides` | 로직 포함 가능 (복잡한 처리 대응) |
+`let`, `with`, `run`, `apply`, `also` → 可読性向上のために使用
+
+---
+
+## 🧷 @Binds と @Provides の違い
+
+| 項目          | 説明                     |
+| ----------- | ---------------------- |
+| `@Binds`    | 実装クラスとインターフェースを結びつけるだけ |
+| `@Provides` | 複雑なロジックを含む提供処理も可能      |
 
 ---
 
 ## 🧩 Entity vs Model
 
-| 용도     | 위치     | 설명                 |
-| ------ | ------ | ------------------ |
-| Entity | 데이터 계층 | DB 테이블 매핑 객체       |
-| Model  | 도메인 계층 | 비즈니스 로직 + UI 상태 표현 |
+| 用途     | 層     | 説明                      |
+| ------ | ----- | ----------------------- |
+| Entity | データ層  | DB テーブルに対応するクラス         |
+| Model  | ドメイン層 | ビジネスロジックや UI 状態を表現するクラス |
 
 ---
 
-## ⚙️ AGP (Android Gradle Plugin)
+## ⚙️ AGP（Android Gradle Plugin）
 
-* 빌드, 테스트, 배포 과정 자동화 담당 플러그인
+* ビルド、テスト、配布プロセスを自動化するための Gradle プラグイン
 
 ---
 
-## 🧱 App Build 개요
+## 🧱 App Build の流れ
 
 ```txt
-.kt/.java/.xml → Gradle → DEX → AAB/APK
-외부 라이브러리 (.JAR, .AAR) → DEX 변환 포함
+.kt / .java / .xml → Gradle → DEX → AAB / APK
+外部ライブラリ（.JAR / .AAR） → DEX に変換
 ```
 
-| 포맷     | 설명                                    |
-| ------ | ------------------------------------- |
-| `.JAR` | 순수 Java 파일                            |
-| `.AAR` | AndroidManifest.xml 포함 Android 전용 패키지 |
+| フォーマット | 説明                                      |
+| ------ | --------------------------------------- |
+| `.JAR` | 純粋な Java クラスファイル                        |
+| `.AAR` | AndroidManifest.xml を含む Android 専用パッケージ |
 
 ---
 
-## 🔧 kapt / ksp
+## 🔧 kapt / ksp の違い
 
-| 도구     | 설명                            |
-| ------ | ----------------------------- |
-| `kapt` | Kotlin → Java → 어노테이션 처리      |
-| `ksp`  | Kotlin 전용 경량 어노테이션 처리 도구 (빠름) |
+| ツール    | 説明                          |
+| ------ | --------------------------- |
+| `kapt` | Kotlin → Java → アノテーション処理   |
+| `ksp`  | Kotlin 向け軽量アノテーションプロセッサ（高速） |
 
 ---
 
-## 🧰 빌드 유형 구성
+## 🧰 ビルド設定構成
 
 ```gradle
 defaultConfig:
-- 기본 앱 설정 (e.g. minSdkVersion 등)
+- アプリの基本設定（例: minSdkVersion など）
 
 isMinifyEnabled:
-- 코드 난독화/축소 기능
-- 앱 크기 줄이고 보안 향상
+- コードの難読化 / 縮小設定
+- アプリサイズを削減しセキュリティを向上
 ```
 
 ```txt
-Minify: 불필요한 공백/주석 제거
-Shrink: 사용하지 않는 코드 제거
+Minify: 不要な空白・コメントの削除
+Shrink: 未使用のクラスやメソッドの削除
 ```
 
 ---
 
-## 🌊 Flow 개념
+## 🌊 Flow の概念
 
-* 생산자 (Repo) → Flow 데이터 입력
-* 소비자 (UI) → Flow 데이터 수집
+* 生産者（Repo） → Flow にデータを送信
+* 消費者（UI） → Flow からデータを収集
 
 ```kt
 lifecycleScope.launch {
@@ -140,42 +140,42 @@ lifecycleScope.launch {
 }
 ```
 
-✅ 구성 변경 대응, 백그라운드에서 낭비 없음
+✅ 構成変更に強く、バックグラウンドでもリソースの無駄がない
 
-📅 2025/06/19 (Thu)
+📅 2025/06/19 (木)
 
-* SELECT → UI에 자동 반영
-* DELETE/UPDATE → UI 변화 없음
-* `suspend`와 함께 사용 ❌ (Flow는 자체 비동기)
+* SELECT → UI に自動反映
+* DELETE / UPDATE → UI 変化なし
+* `suspend` とは併用不可（Flow 自体が非同期）
 
 ---
 
-## 🧠 Kotlin 키워드
+## 🧠 Kotlin キーワード
 
 ```kt
-out: 제너릭 공변성 → 출력 전용
-R: Android 리소스 접근용 자동 생성 클래스
+out: ジェネリクスの共変性（出力専用）を表すキーワード
+R: Android リソースアクセス用自動生成クラス
 ```
 
 ---
 
 ## ⏱️ LocalDateTime vs Instant
 
-| 항목  | LocalDateTime | Instant  |
-| --- | ------------- | -------- |
-| 타임존 | ❌ 없음 (로컬 기준)  | ✅ UTC 기준 |
-| 용도  | 국내/지역 서비스     | 글로벌 서비스  |
+| 項目     | LocalDateTime  | Instant     |
+| ------ | -------------- | ----------- |
+| タイムゾーン | ❌ なし（ローカル時間基準） | ✅ UTC 基準    |
+| 用途     | 国内 / 地域向けサービス  | グローバルサービス向け |
 
 ---
 
-## 🔗 onDelete 옵션
+## 🔗 onDelete オプション
 
-1. `CASCADE` : 부모 삭제 시 자식도 삭제됨
-2. `RESTRICT` : 자식이 있으면 부모 삭제 차단
-3. `SET NULL` : 부모 삭제 시 자식 외래키를 NULL로
-4. `NO ACTION` : 아무 동작 없음
+1. `CASCADE` : 親が削除されると子も自動削除
+2. `RESTRICT` : 子が存在する場合、親の削除を拒否
+3. `SET NULL` : 親削除時、子の外部キーを NULL に
+4. `NO ACTION` : 何もしない
 
 ---
 
-📦 이 문서는 Kotlin & Android 개발자용 메모 정리용 `.md` 포맷입니다.
-✍️ Created by 너
+📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
+✍️ 作成者: IM
