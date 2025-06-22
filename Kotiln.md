@@ -177,5 +177,15 @@ R: Android リソースアクセス用自動生成クラス
 
 ---
 
+
+## Varargs 
+
+
+
+---
+## Flow vs Suspend 
+```
+
+```
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
