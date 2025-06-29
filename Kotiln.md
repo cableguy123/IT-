@@ -177,15 +177,176 @@ R: Android リソースアクセス用自動生成クラス
 
 ---
 
+## Listに addする時 JavaとKotilnが違った　
 
-## Varargs 
+| 項目     | List  | 
+| ------ | -------------- |
+| Java |  | 
+| Kotiln | 国内 / 地域向けサービス  | 
+
+---
+
+## viewModel() vs hiltViewModel何が違う？
+まずは、hiltViewModel()から
+```
+@Composable
+inline fun <reified VM : ViewModel> hiltViewModel(
+    viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
+        "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
+    },
+    key: String? = null
+): VM {
+    val factory = createHiltViewModelFactory(viewModelStoreOwner)
+    return viewModel(viewModelStoreOwner, key, factory = factory)
+}
+
+@Composable
+inline fun <reified VM : ViewModel, reified VMF> hiltViewModel(
+    viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
+        "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
+    },
+    key: String? = null,
+    noinline creationCallback: (VMF) -> VM
+): VM {
+    val factory = createHiltViewModelFactory(viewModelStoreOwner)
+    return viewModel(
+        viewModelStoreOwner = viewModelStoreOwner,
+        key = key,
+        factory = factory,
+        extras = viewModelStoreOwner.run {
+            if (this is HasDefaultViewModelProviderFactory) {
+                this.defaultViewModelCreationExtras.withCreationCallback(creationCallback)
+            } else {
+                CreationExtras.Empty.withCreationCallback(creationCallback)
+            }
+        }
+    )
+}
+```
+
+次は viewModel()で　
+```
+public inline fun <reified VM : ViewModel> viewModel(
+    viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
+        "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
+    },
+    key: String? = null,
+    factory: ViewModelProvider.Factory? = null,
+    extras: CreationExtras = if (viewModelStoreOwner is HasDefaultViewModelProviderFactory) {
+        viewModelStoreOwner.defaultViewModelCreationExtras
+    } else {
+        CreationExtras.Empty
+    }
+): VM = viewModel(VM::class.java, viewModelStoreOwner, key, factory, extras)
+```
+
+違いは
+- "factory"を viewModelStoreOwnerから生成するか　(hiltViewModel)
+- 直接渡すか（viewModel）
+
+また
+- "extras"を ViewModelFactory → ViewModel関数から生成するか(hiltViewModel)
+- 直接渡すか(viewModel)
+
+---
+
+## factoryは何？
+
+- Kotilnにおけるインスタンス生成方法の一つ
+- インスタンスの生成で、singleまたはfactoryを使う　
+--- 
+
+# singleと factoryの使いわけ
+- 例としては Repositoryクラスのように決まった対象のDBアクセスする必要があり、かつ、アクセスする際に、一貫性を保つ必要があるケース
+> single (Singleton)
+
+- HttpClientクラスのような決まった設定値を全てのアプリで使い回すケース　
+> single (Singleton)
+
+- UseCaseのような画面(ViewModel)で必要になる度に生成された方がメモリのコストなどでメリットになるケース
+> factory 
+
+---
+
+## factoryとは？
+```
+class User(val name : String) {
+    companion object {
+        fun from(name : String) : User {
+            return User(name)
+        }
+    }
+}
+```
+
+- companion objectが代表的
+---
+## inline,noinline,crossinline
+
+- 무의미한 객체 생성을 방지해줌 
+- 
+
+---
+
+## HOF(Higher-Order Function)
+
+- 함수의 인자로 다른 함수를 받거나 또는 함수 자체를 반환하는 함수 
+```
+fun calculate(x: Int,y: Int, operation: (Int,Int) -> Int) : Int {
+    return operation(x,y)
+}
+
+fun sum(x: Int,y: Int) = x + y
+
+fun main() {
+    val sumResult = calculate(4,5, ::sum)
+    val mulResult = calculate(4,5) {
+        a,b -> a * b
+    }
+    println("sum Result $sumResult, And mul Result $mulResult")
+}
+```
+
+- 함수를 반환하는 고차함수
+```
+fun operation(): (Int) -> Int {
+    return ::square
+}
+
+fun square(x: Int) = x * x
+
+fun main() {
+    val func = operation()
+    println(func(2))
+}
+```
+---
+## Android Network 
 
 
 
 ---
-## Flow vs Suspend 
-```
+## Dispatcher 
 
-```
+> 스레드(Thread)에 코루틴(Coroutine)을 보낸다라는 의미 
+
+Dispatchers.Default
+- CPU를 많이 사용하는 작업을 Main Thread가 아닌 다른 Thread에서 CPU작업을함 
+- CPU core 개수만큼 동시에 돌릴수있음 "최소2개가 돌림"
+- 리스트 정렬,JSON Parsing 작업에 최적화
+
+Dispatchers.Main 
+- UI 작업을 위한 Main Thread로 이동시키는 코루틴 디스패치
+- UI와 상호작용하는 작업을 실행하기 위해서만 사용 
+
+Dispatchers.IO
+- 디스크 또는 네트워크 작업 즉, 스레드를 오랫동안 블락킹하는 I/O 작업을 실행하기 위한 디스패치
+- Dispatchers.Default와 쓰레드를 공유하고있음
+
+Dispatchers.Unconfined
+- 호출한 context를 기본으로 사용하는데 중단 후 다시 사용될때 context가 바뀌면 
+바뀐 context를 따라감 
+
+
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
