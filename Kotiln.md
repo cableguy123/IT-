@@ -281,10 +281,18 @@ class User(val name : String) {
 
 - companion objectが代表的
 ---
-## inline,noinline,crossinline
+## inline
 
 - 무의미한 객체 생성을 방지해줌 
-- 
+- 정확한 사전의미는, 고차 함수를 쓰면 성능 오버헤드가 생기는데 그 오버헤드를 줄이기위해 사용
+- 즉,쉽게얘기해서 함수 본문을 복사해서 호출위치에 붙여넣기함
+- 런타임 성능 향상이 이루어짐 
+
+## noinline
+
+
+
+## crossinline
 
 ---
 
@@ -346,6 +354,67 @@ Dispatchers.IO
 Dispatchers.Unconfined
 - 호출한 context를 기본으로 사용하는데 중단 후 다시 사용될때 context가 바뀌면 
 바뀐 context를 따라감 
+
+---
+
+## Async 
+코틀린에서는 2종류의 Thread가 존재 
+
+- Thread
+1. 하나의 프로세스 내에서 독립적으로 실행하는 단위 
+2. 운영체재 수준에서 관리
+3. 생성 및 관리에 오버헤드 발생가능성 O 
+4. 동시성 처리에 유용, 스레드 수가 많아지면 성능 저하 
+5. UI 스레드,Background 스레드
+
+- Coroutine 
+1. 코틀린에서 제공하는 경량 스레드
+2. 스레드보다 가볍고 효율적인 동시성 프로그래밍 가능하게함 
+3. 하나의 스레드에서 여러개의 코루틴 실행가능 
+4. JVM 수준에서 관리
+5. 적은 메모리,CPU 자원 사용
+6. launch,async 등 코루틴 빌더를 사용하여 시작
+
+---
+
+## takeIf 
+
+> true or null 을 반환함 
+
+```
+val animal = "Animal" 
+
+val result = animal.takeIf { it.length >= 5 }
+
+println(result)
+```
+---
+## 엘비스 연산자(?:) 
+
+> 왼쪽이 null이면 오른쪽 값을 써라 
+
+```
+data class Being(
+    val name: String,
+    val type: String
+)
+
+fun main() {
+    val input = Being(
+        name = "뽀삐",
+        type = "animal"
+    )
+
+    val result = input
+        .takeIf { it.name == "뽀삐" }?.type?: "얘는 뽀삐가 아닌데요"
+
+    println(result)
+}
+```
+---
+# 안전 호출 연산자(?.) 
+
+> null값일지도 모르는곳에 안전하게 접근
 
 
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
