@@ -417,5 +417,71 @@ fun main() {
 > null값일지도 모르는곳에 안전하게 접근
 
 
+---
+
+# SharedPreferences
+
+- 간단한 데이터를 저장하고 불러올수있다 
+- 어플을 꺼도 데이터가 유지된다라는점 (DB?)
+- SharedPreferences는 앱에서 파일 형태로 데이터를 저장
+- 데이터는 (key,value) 형태로 shread_prefs 폴더 안에 .xml파일로 저장 
+
+
+---
+
+# JVM (Java Virtual Machine)
+
+![alt text](image.png)
+
+1. Class Loader 
+2. Execution Engine 
+3. Garbage Collector
+4. Runtime Data Area　
+
+- 자바 소스 파일은 자바 컴파일러에 의해서 바이트코드인 형태인 클래스파일이되고<br>
+클래스 파일은 클래스 로더가 읽어들이면서 JVM이 수행함 
+
+1. Class Loader 
+- JVM 내로 클래스파일을 로드하고,링크를 통해 배치하는 작업을 수행하는 모듈
+- 런타임 시 동적으로 클래스를 로드 
+<br>
+
+2. Execution Engine 
+- Class Loader에 의해 메모리에 적재된(바이트 코드)들을 기계어로 변경해 명령어 단위로 실행 
+- Interpreter방식,JIT 컴파일러를 이용하는 방식
+- Interpreter방식을 사용하다가 기준이 넘어가면 JIT 컴파일러 방식으로 실행 
+
+3. Garbage Collector (GC)
+- Heap 메모리 영역에 생성된 객체들 중 참조되지않는 객체들을 탐색 후 제거하는 역할
+- GC가 역할을 하는 시간은 정확히 모름,
+
+4. Runtime Data Area 
+- JVM의 메모리 영역으로 자바 앱을 실행할때마다 사용되는 데이터들을 적재하는 영역
+- Method Area,Heap Area,Stack Area,PC Register, Natvie Method Stack으로 나눔 
+
+![alt text](image-1.png)
+
+1. Method Area(메소드 영역)
+- 모든 쓰레드가 공유하는 메모리 영역
+- 클래스,인터페이스,메소드,필드,static 변수 등의 바이트 코드들을 보관 
+
+2. Heap Area(힙 영역)
+- 모든 스레드가 공유하며, new 키워드로 생성된 객체와 배열이 생성되는 영역
+- Method Area에 로드된 클래스만 생성가능, GC가 참조되지않는 메모리를 확인하고 제거하는 영역
+
+3. Stack Area(스택 영역)
+- 메서드 호출 시마다 각각의 스택 프레임을 생성
+- 메서드 안에서 사용되는 값들을 저장하고,호출된 메서드의 매개변수,지역변수,리턴 값 및 연산의 값 저장
+- 메서드 수행이 끝나면 프레임별로 삭제함
+
+4. PC Register(PC 레지스터)
+- 쓰레드가 시작될떄 생성되며, 생성될때마다 생성되는공간,쓰레드마다 하나씩 존재 
+- 현재 쓰레드가 실행되는 부분의 주소와 명령을 저장하고있음
+
+5. Native Method Stack 
+- 자바 외 언어로 작성된 네이티브 코드를 위한 메모리영역 
+
+---
+
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
