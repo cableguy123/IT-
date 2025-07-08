@@ -483,5 +483,28 @@ fun main() {
 
 ---
 
+# @SuppressLint("")
+
+> Compose 컴포저블 함수안에서 CoroutineScope.launch{}를 직접호출했을떄 생기는 Lint경고를 무시 
+
+---
+
+# @OptIn(ExperimentalMaterial3Api::class)
+
+> ExperimentalMaterial3Api로 마킹된 Jetpack Compose Material3라이브러리의 실험적인 API사용 선언 
+
+```
+            CoroutineScope(Dispatchers.Main).launch {
+                val userDao = LocalDatabase.getDatabase(applicationContext).userDao()
+                val users = userDao.loadAllUser().first()
+                Log.d("CheckUsers", "유저 수: ${users.size}")
+            }
+```
+
+# BuildConfigField 
+
+- Android 프로젝트에서 Gradle 빌드 설정을 통해 BuildConfig 클래스에 사용자 정의필드 추가 
+- 
+
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
