@@ -504,7 +504,115 @@ fun main() {
 # BuildConfigField 
 
 - Android 프로젝트에서 Gradle 빌드 설정을 통해 BuildConfig 클래스에 사용자 정의필드 추가 
+- BuildConfig 클래스에 상수(static final)값을 추가하게됨
+```
+public static final String BASE_URL = "https://jp.co.we.travelbuddy";
+```
+--- 
+
+# MutableStateFlow 
+
+- 정의 
+> 상태를 관리하고 변화를 추적하는데 사용되는 코루틴의 Flow API 
+
+장점
+- 현재 값을 가지고있음 (즉,최신 상태)
+- 새로운 값을 emit하여 해당 상태를 구독하는 모든 곳에 업데이트를 전파 
+- producer <-> consumer의 관계를 가짐
+- 멀티플 구독자 모델 
+- 콜드 스트림이라 구독한 순간부터 데이터가 방출됨
+- 최신 상태 유지 
+
+단점 
+- 초기값 설정이 필요 
+- 러닝 커브,반드시 코루틴을 알아야됨
 - 
+
+
+# MutableState 
+- 정의 
+> 컴포즈에서 값을 읽고 쓸수 있는 상태 홀더로, 값의 변경사항을 컴포즈가 자동으로 추적함 
+
+- 유저 상호작용,앱 상태의 변화에 따라 UI를 업데이트해야하는 대화형 UI 제작시 사용 
+- Thread Not Safe 
+- 단일 구독자 모드이기에 하나의 구독자만 상태를 관찰할수있음 
+- 컴포즈 전용인지라 자바 기반의 안드로이드 뷰에서는 사용 X 
+- 상태 Flow를 emit 하거나 collect할수 없어서 반응형 상태 관리가 필요할땐 사용어려움 
+
+---
+
+# SnackBar 
+
+> 사용자에게 메세지를 띄우기 위함 
+
+- 일시적인 정보나 경고를 전달
+
+
+---
+ 
+# LaunchedEffect 
+> Composable의 범위에서 정지 함수 실행 
+
+- UI를 내보내지않으며 컴포지션이 완료될때 부수 효과를 실행하는 구성 가능 함수 
+- 컴포저블의 전체 기간에 걸쳐 작업을 실행하고 정지 함수를 호출할수있는기능 
+- 뷰가 열리자마자 바로 실행이되네..? 
+
+
+---
+
+# .xml 
+
+> colors.xml 
+- colorPrimary
+1. 앱의 기본 색상 
+2. 대부분의 UI요소에 사용 
+- colorPrimaryVarinat 
+1. 안드로이드 앱 테마에서 색삿을 정함 
+
+
+---
+
+# TextField 
+
+!! 동일한 기능을 제공하지만, 혼합은 X 
+- Filled text fields 
+
+1. 아래 부분엔 라인만 있고,위에는 라인이 없음
+
+- Outlined text fields 
+ 
+---
+
+# Coroutine Scope 
+
+> MainScope,GlobalScope,Coroutine Scope
+
+
+# Coroutine Builders 
+
+> 코루틴을 생성하는 메소드를 의미한다. launch,async,withContext,runBlocking 등
+
+1. launch
+
+- 코루틴을 시작하고 코루틴을 실행중인 작업의 상태를 추적하고 변경할수있는 Job객체를 돌려줌
+- CoroutineScope.() -> Unit 타입의 일시중단 람다 
+
+2. async 
+
+- 결과를 필요로하는 경우 사용 
+
+3. runBlocking() 
+- launch()와 async() 빌더의 경우 스레드 호출을 blocking 시키지는않음 
+- 백그라운드 스레드 풀을 통해 작업을 실행
+- 메인 스레드에서 움직임(그렇기때문에 다른 코루틴안에서 실행X)
+
+
+# Couroutine Context
+
+> key와 element를 갖는 map, element의 서브타입으로는 Job,Deferred,Dispatcher등이 들어감 
+
+
+
 
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM

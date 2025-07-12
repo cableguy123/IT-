@@ -44,9 +44,7 @@ macOS앱을 배포할려면 이 기능이 활성화되어있어야 AppStore 등�
 
 <h2>Room 라이브러리 데이터베이스 스키마 생성시, 경고</h2>
 
-> exportSchema 옵션에 의한 경고문구 
-
-> DB구조정보를 JSON파일 형태로 폴더에 내보냄 
+> exportSchema 옵션에 의한 경고문구, DB구조정보를 JSON파일 형태로 폴더에 내보냄 
 
 - exportSchema는 Boolean타입
 - 데이터베이스 스키마를 폴더로 내보낼지 정할수있음
