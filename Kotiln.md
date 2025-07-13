@@ -612,7 +612,59 @@ public static final String BASE_URL = "https://jp.co.we.travelbuddy";
 > key와 element를 갖는 map, element의 서브타입으로는 Job,Deferred,Dispatcher등이 들어감 
 
 
+---
 
+# NavController
+
+- NavHost 내부에서 App Navigation을 관리 
+-  단일 컨텍스트 또는 컨테이너 
+- NavController를 직접 사용할수는 있지만! 하위 구현체는 NavHostController을 통해 액세스 하는것이 좋음 
+- NavHostController의 상위 타입 
+- 공통된 네비게이션 기능을 정의한 추상 클래스!! 
+- 실제 앱 로직에서는 X 
+
+# NavHostController
+
+- NavController를 상속한 구현체 
+- rememberNavController()가 반한하는 실제 객체 타입 
+- Compose앱에서 항상 이걸 사용해서 화면 이동 제어 
+---
+
+# 클라이언트 인증 
+
+> 특정 Google Play 서비스(ex: Google Login..) 의 경우 앱의 OAuth2 클라이언트 및 API 키를 만들수 있도록 서명인증서의 SHA-1을 제공해야함
+
+# MD5
+> Message-Digest Algorithm5의 약자 
+- 임의의 길이의 데이터를 입력받아 128 비트 고정길이의 해시값을 출력하는 암호화 해시 함수 
+- 파일이나 데이터의 무결성 검사
+- 원본 데이터가 변경되지 않았는지 확인하는데 사용 
+- 32자의 문자열을 반환 
+
+# SHA1 
+> 암호학적 해시 함수들의 모음을 SHA라고함
+
+- SHA-1은 SHA-0을 변형한 SHA함수
+- 임의의 길이의 입력데이터를 160비트의 출력 데이터로 바꿈 
+
+
+---
+
+# .setServerClientId() 
+
+> Firebase Console에서 발급받은 Web용 클라이언트ID 
+
+
+---
+
+# derivedStateOf
+ 
+> Jetpack Compose에서 상태(State)를 기반으로 새로운 상태를 계산할떄 사용하는 함수 
+
+- 기존 상태가 변경될때만 새로운 상태를 다시 계산하여 불필요한 재구성을 방지
+- composable 함수 안에서는 사용해야함 
+- mutableStateOf와 같이 recomposition이 일어나도 살아남아야함 
+- remeber해야됨 
 
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
