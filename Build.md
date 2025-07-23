@@ -17,7 +17,14 @@
 - minifyEnabled를 true설정후 proguardFiles를 사용하여 규칙파일 생성
 - 앱 관련 코드(R.java 파일,SourceCode,Interface)등.. javac(java compiler)이 컴파일하여 (.class) 파일로 변환하는데 이떄, Proguard 과정이 일어남
 ```
-release {
-
+debug {
+    minifyEnabled = true // debug default value = false
+    proguardFiles getDefaultProguardFile(
+        'proguard-android.txt'
+    ),
 }
 ```
+
+## applicationIdSuffix 
+> 앱의 고유 식별자인 applicationId 뒤에 붙는 문자열 Play스토어 등록시 사용됨 <br>
+> com.example.myapp 
