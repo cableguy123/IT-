@@ -15,3 +15,11 @@
 - Android 4.4(API Level 19)이상에서만 지원
 
 
+---
+
+# Cloud Firestore
+- NoSQL 데이터베이스 서비스
+- 데이터를 테이블로 관리하지않음
+- JSON 이나 트리 구조 형태로 데이터를 관리
+
+# Data Normalization 
