@@ -666,5 +666,26 @@ public static final String BASE_URL = "https://jp.co.we.travelbuddy";
 - mutableStateOf와 같이 recomposition이 일어나도 살아남아야함 
 - remeber해야됨 
 
+---
+
+# Room (Migration) 
+
+> 자동 마이그레이션 
+
+1. version 버전 증가
+- 스키마(엔티티) 구조 변경시 version을 올려줘야됨
+- 버전 올리고 나서  fallbackToDestructiveMigration( ) 사용 
+
+2. fallbackToDestructiveMigration()
+- 데이터베이스를 삭제하고 다시 생성하는 방식
+- 간단한 변경이나 데이터 손실 문제없을때
+3. fallbackToDestructiveMigrationFrom() 
+- 특정 버전부터 파괴적임 
+4. allowMainThreadQueries() 
+- 메인 스레드에서 DB작업 허용할때만 
+
+> 수동 마이그레이션
+
+-
 📦 本ドキュメントは Kotlin & Android 開発者向けメモまとめ `.md` フォーマットです。
 ✍️ 作成者: IM
