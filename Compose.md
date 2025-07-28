@@ -30,4 +30,15 @@ private fun Greeting(name: String) {
 > 흐름 레이아웃 
 - FlowRow 
 
+--- 
+
+# Margin vs Padding 차이 
+
+> margin 
+- 부모 레이아웃의 테두리부터의 여백을 의미함
+
+> padding
+- 위젯 테두리로부터 위젯 안에의 내용 사이의 여백을 얘기함
+
+![alt text](image-2.png)
 
